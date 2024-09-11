@@ -1,2 +1,4 @@
 streamlit==1.37.1
 py7zr==0.22.0
+pyrebase4==4.8.0
+datetime==5.5
