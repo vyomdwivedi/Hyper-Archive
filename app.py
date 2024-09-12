@@ -1,8 +1,10 @@
 import os
-import py7zr
 import time
 import shutil
-import streamlit as st
+import py7zr  #pip install py7zr
+import streamlit as st  #pip install streamlit
+import auth  #Importing the auth.py file
+
 
 
 def compressor(ff_Path, ff_name):
@@ -59,6 +61,8 @@ def compressor(ff_Path, ff_name):
     end_time = time.time()
     st.write(f'Time taken: {end_time - start_time} seconds')
     st.write("Compression complete.")
+
+
 
 def decompressor(rar_path, extract_name):
     start_time = time.time()
@@ -157,8 +161,12 @@ def decompressor(rar_path, extract_name):
     st.write(f'Time taken: {end_time - start_time} seconds')
     st.write("Extraction complete.")
 
+
+
 def main():
-    # st.title("Hyper Archive Tool")      # Already present in main.py
+    # st.title("Hyper Archive Tool")  # Already present in main.py
+
+    st.subheader(f"Welcome {st.session_state.email}")
 
     function = st.selectbox("What do you want to do?", ("Compress", "Decompress"))
 
