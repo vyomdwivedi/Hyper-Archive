@@ -1,7 +1,13 @@
-import streamlit as st #pip install streamlit
-import pyrebase #pip install pyrebase4
-from datetime import datetime #pip install datetime
-import app  # Importing the app.py file
+import streamlit as st  #pip install streamlit
+import pyrebase  #pip install pyrebase4
+from datetime import datetime  #pip install datetime
+import app  #Importing the app.py file
+
+
+
+# ---STREAMLIT CONFIGURATION---
+st.set_page_config(page_title='Hyper Archive Tool', page_icon=':floppy_disk:', layout='centered', initial_sidebar_state='auto')
+st.title('Hyper Archive Tool')
 
 
 
@@ -31,12 +37,6 @@ storage = firebase.storage()
 
 
 
-# ---STREAMLIT CONFIGURATION---
-st.set_page_config(page_title='Hyper Archive Tool', page_icon=':floppy_disk:', layout='centered', initial_sidebar_state='auto')
-st.title('Hyper Archive Tool')
-
-
-
 # ---FIREBASE AUTHENTICATION---
 if 'logged_in' not in st.session_state:
     st.session_state.logged_in = False
@@ -47,7 +47,9 @@ else:
     choice = st.selectbox('Choose Action', ['Sign Up', 'Login'])
 
     if choice == 'Sign Up':
+        name = st.text_input('Name')
         email = st.text_input('Email')
+        st.session_state.email = email
         password = st.text_input('Password', type='password')
         if st.button('Sign Up'):
             try:
@@ -61,13 +63,15 @@ else:
 
     elif choice == 'Login':
         email = st.text_input('Email')
+        st.session_state.email = email
         password = st.text_input('Password', type='password')
         if st.button('Login'):
             try:
                 user = auth.sign_in_with_email_and_password(email, password)
                 st.success('Logged in successfully')
+                st.warning('Please click on the Login button to continue')
                 st.session_state.logged_in = True
-                st.experimental_rerun()  # Rerun the script to load app.py
+                st.experimental_set_query_params(logged_in=True)  # Set query param to trigger rerun
             except Exception as e:
                 st.error("Invalid email or password")
                 st.error(e)
