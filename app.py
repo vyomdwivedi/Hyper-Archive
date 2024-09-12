@@ -158,7 +158,7 @@ def decompressor(rar_path, extract_name):
     st.write("Extraction complete.")
 
 def main():
-    st.title("Hyper Archive Tool")
+    # st.title("Hyper Archive Tool")      # Already present in main.py
 
     function = st.selectbox("What do you want to do?", ("Compress", "Decompress"))
 
