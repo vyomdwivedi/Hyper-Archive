@@ -138,4 +138,5 @@ def main():
             else:
                 st.error("Please enter the RAR path and name.")
 
-main()
+if __name__ == "__main__":
+    main()
