@@ -74,4 +74,4 @@ else:
                 st.experimental_set_query_params(logged_in=True)  # Set query param to trigger rerun
             except Exception as e:
                 st.error("Invalid email or password")
-                st.error(e)
+                st.error(e) 
